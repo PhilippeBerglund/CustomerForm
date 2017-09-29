@@ -5,8 +5,191 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfInlämning2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="Kundformulär" Height="550" Width="1000"
         
+        >
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="smallLabel">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Foreground" Value="SteelBlue"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="Kundtyp" Grid.Row="1" />
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="Företag" Name="lblCompany" Grid.Row="2"/>
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="Kontaktperson" Grid.Row="3"/>
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="Födelsedatum" Grid.Row="5"/>
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="Adress" Grid.Row="6"/>
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="Telefon/Mobil" Grid.Row="7"/>
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="E-post" Grid.Row="8"/>
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="Vill ha nyhetsbrev" Grid.Row="9"/>
+        <TextBlock Margin="5" HorizontalAlignment="Right" Text="Anteckningar" Grid.Row="10"/>
+
+
+        <TextBlock Text="Var god och fyll i dina personuppgifter" 
+                 HorizontalAlignment="Left" Margin="10" 
+                  VerticalAlignment="Bottom"
+                   Grid.Column="1"
+                   TextWrapping="Wrap"
+                   FontStyle="Italic"/>
+
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="1" Grid.Column="1" 
+                    HorizontalAlignment="Stretch">
+            <RadioButton Name="rbtPrivate"
+                         GroupName="radioBtn" 
+                         Content="Privat" 
+                         Margin="5" 
+                         Checked="rbtPrivate_Checked"/>
+
+            <RadioButton Name="rbtCompany"
+                         GroupName="radioBtn" 
+                         Content="Företag" 
+                         Margin="5" 
+                         Checked="rbtCompany_Checked"
+                         IsChecked="True"/>
+        </StackPanel>
+
+        <TextBox Name="txtCompany" 
+            Grid.Row="2" Grid.Column="1" 
+                 Margin="5" Width="150" 
+                 HorizontalAlignment="Left"
+                 TextChanged="txtCompany_TextChanged"/>
+
+        <TextBlock Name="lblFirstName" 
+            Grid.Row="3" Grid.Column="1" 
+                 Margin="15,0,0,0" Width="150" 
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Text="Förnamn"
+                 Foreground="LightSteelBlue"/>
+
+        <TextBox Name="txtFirstName" 
+            Grid.Row="3" Grid.Column="1" 
+                 Margin="5" Width="150" 
+                 HorizontalAlignment="Left"                
+                 Background="Transparent"
+                 TextChanged="txtFirstName_TextChanged"/>
+
+        <TextBlock Name="lblLastName" 
+            Grid.Row="4" Grid.Column="1" 
+                 Margin="15,0,0,0" Width="150" 
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Text="Efternamn"
+                 Foreground="LightSteelBlue"/>
+
+        <TextBox Name="txtLastName" 
+            Grid.Row="4" Grid.Column="1" 
+                 Margin="5" Width="150" 
+                 HorizontalAlignment="Left"
+                 Background="Transparent"
+                 TextChanged="txtLastName_TextChanged"/>
+
+        <DatePicker Grid.Row="5" Grid.Column="1" 
+                    Margin="5" Width="150"
+                    HorizontalAlignment="Left"
+                    Name="DOB"/>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left"
+                    Grid.Row="6" Grid.Column="1"  Margin="5" Width="150">
+            <TextBlock Text="Gatuadress" Style="{StaticResource smallLabel }"/>
+            <TextBox Margin="0,0,0,5" Name="Street"/>
+            <TextBlock Text="Postnummer" Style="{StaticResource smallLabel }"/>
+            <TextBox Margin="0,0,0,5" Name="Zip"/>
+            <TextBlock Text="Ort" Style="{StaticResource smallLabel }"/>
+            <TextBox Margin="0,0,0,5" Name="City"/>
+        </StackPanel>
+
+        <TextBox Grid.Row="7" Grid.Column="1" Margin="5" Width="150"
+                    HorizontalAlignment="Left" Name="Phone"/>
+
+        <TextBox  Grid.Row="8" Grid.Column="1" Margin="5" Width="150"
+                    HorizontalAlignment="Left" Name="Email"/>
+
+        <CheckBox Grid.Row="9" Grid.Column="1" Margin="5" Width="150"
+                  HorizontalAlignment="Left"
+                  Name="NewsLetter" Content="JA"/>
+
+        <TextBox Grid.Row="10" Grid.Column="1" Margin="5,0,0,0" Width="150"
+                  HorizontalAlignment="Left" VerticalAlignment="Top"
+                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                  AcceptsReturn="True" TextWrapping="Wrap" Height="60" Name="Notes" />
+
+        <Button Grid.Row="11" Grid.Column="1" Margin="5" Width="100"
+                HorizontalAlignment="Left"
+                Content="Spara" Click="Save_Click" Name="Save" />
+
+
+        <TextBlock Text="Sök kund, mata in Email eller Telefon"
+                   Grid.Row="1" Grid.Column="3" Margin="5"
+                   HorizontalAlignment="left"
+                   VerticalAlignment="Bottom"/>
+
+        <TextBox Name="txtSearch"
+                 Grid.Row="2" Grid.Column="3" Margin="5" Width="200"
+                 HorizontalAlignment="Left"/>
+        
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"
+                     Grid.Row="3" Grid.Column="3">
+            
+            <Button  Grid.Row="3" Grid.Column="3" Margin="5" Width="70"
+                 HorizontalAlignment="Left" Content="Sök"
+                 Name="btnSearch" Click="btnSearch_Click"/>
+
+            <Button  Grid.Row="3" Grid.Column="3" Margin="5" Width="70"
+                 HorizontalAlignment="right" Content="Rensa"
+                 Name="btnClear" Click="btnClear_Click" />
+        </StackPanel>
+
+        <ListView Grid.RowSpan="10" Grid.Row="4" Grid.Column="2" Margin="5" 
+                 HorizontalAlignment="Left"
+                 Name="ResultList"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Kundtyp" DisplayMemberBinding="{Binding CustomerType}"/>
+                    <GridViewColumn Header="Företag" DisplayMemberBinding="{Binding CompanyName}" />
+                    <GridViewColumn Header="Förnamn" DisplayMemberBinding="{Binding FirstName, ValidatesOnDataErrors=True}"   />
+                    <GridViewColumn Header="Efternamn" DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn Header="Födelsedatum" DisplayMemberBinding="{Binding DOB, StringFormat=yyyy-mm-dd }"/>
+                    <GridViewColumn Header="Gata" DisplayMemberBinding="{Binding Street}"/>
+                    <GridViewColumn Header="Poostnummer" DisplayMemberBinding="{Binding Zip}"/>
+                    <GridViewColumn Header="Ort" DisplayMemberBinding="{Binding City}"/>
+                    <GridViewColumn Header="Telefon" DisplayMemberBinding="{Binding Phone}"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"/>
+                    <GridViewColumn Header="Nyhetsbrev" DisplayMemberBinding="{Binding NewsLetter, ConverterParameter={}}"/>
+                    <GridViewColumn Header="Anteckningar" DisplayMemberBinding="{Binding Notes}"/>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
     </Grid>
 </Window>
